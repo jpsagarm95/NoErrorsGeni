@@ -109,6 +109,7 @@ void dijkstras(int time, int** distMatrix){
 }
 
 void* spf(void* param){
+	printf("%s\n", "Just got into spf");
 	int i = 1, j;
 	int time = 0;
 	int **distMatrix;
