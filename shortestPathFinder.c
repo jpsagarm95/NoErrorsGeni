@@ -75,7 +75,9 @@ void dijkstras(int time, int** distMatrix){
 	}
 	ofp = fopen(outfile, "a");
 	fprintf(ofp,"Rounting table at time %d\n", time);
+	printf("Rounting table at time %d\n", time);
 	fprintf(ofp,"Destination\tPath\tCost\n");
+	printf("Destination\tPath\tCost\n");
 	int now, counter;
 	int path[2 * NUMBER_OF_ROUTERS + 1];
 	for(i = 0 ; i < NUMBER_OF_ROUTERS ; i++){
@@ -84,6 +86,7 @@ void dijkstras(int time, int** distMatrix){
 			continue;
 		}
 		fprintf(ofp,"%d ", i);
+		printf("%d ", i);
 		now = i;
 		path[counter++] = i;
 		while(prev[now] != identifier){
@@ -93,11 +96,15 @@ void dijkstras(int time, int** distMatrix){
 		path[counter] = identifier;
 		for(j = counter ; j > 0 ; j--){
 			fprintf(ofp,"%d-", path[j]);
+			printf("%d-", path[j]);
 		}
 		fprintf(ofp,"%d ", path[0]);
+		printf("%d ", path[0]);
 		fprintf(ofp,"%d\n", dist[i]);
+		printf("%d\n", dist[i]);
 	}
 	fprintf(ofp, "\n" );
+	printf("\n");
 	fclose(ofp);
 }
 

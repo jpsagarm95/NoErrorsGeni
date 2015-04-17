@@ -74,10 +74,10 @@ void* sender(void* param){
 			gettimeofday(&timenow, NULL);
 			helloTime = ((timenow.tv_sec  % 1000000)* 1000000 + (timenow.tv_usec));
 		}
-		printf("%s\n", "Actual Link Costs:");
-		for(i = 0 ; i < NUMBER_OF_NEIGHBORS; i++){
-			printf("%d %d\n", actual_link_costs[i][0], actual_link_costs[i][1]);
-		}
+		// printf("%s\n", "Actual Link Costs:");
+		// for(i = 0 ; i < NUMBER_OF_NEIGHBORS; i++){
+		// 	printf("%d %d\n", actual_link_costs[i][0], actual_link_costs[i][1]);
+		// }
 	}
 }
 
@@ -166,15 +166,15 @@ void* receiver(void* param){
 						// printf("%d ", every_node_lsa_details[node_id][i][1]);
 						offset += 8;
 					}
-					printf("\n");
-					printf("%s\n", "Lsa status:");
-					int k;
-					for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
-						printf("%dth router:\n",i);
-						for(j = 0 ; j < every_node_neighbors[i]; j++){
-							printf("%d %d\n",every_node_lsa_details[i][j][0], every_node_lsa_details[i][j][1] );
-						}
-					}
+					// printf("\n");
+					// printf("%s\n", "Lsa status:");
+					// int k;
+					// for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
+					// 	printf("%dth router:\n",i);
+					// 	for(j = 0 ; j < every_node_neighbors[i]; j++){
+					// 		printf("%d %d\n",every_node_lsa_details[i][j][0], every_node_lsa_details[i][j][1] );
+					// 	}
+					// }
 					// for(i = 0 ; i < NUMBER_OF_NEIGHBORS ; i++){
 					// 	printf();
 					// }
