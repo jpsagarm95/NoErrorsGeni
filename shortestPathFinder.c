@@ -27,7 +27,6 @@ int allFixed(int* fixed){
 }
 
 void dijkstras(int time, int** distMatrix){
-	printf("%s\n", "Just got in");
 	int present = identifier;
 	int i,j;
 	int fixed[NUMBER_OF_ROUTERS];
@@ -44,6 +43,7 @@ void dijkstras(int time, int** distMatrix){
 	dist[identifier] = 0;
 	int min, next;
 	while(!allFixed(fixed)){
+		printf("%s\n", "Just got in");
 		// printf("%s\n", "Into dijkstras");
 		// printf("%d\n", present);
 		// printf("%s\n", "Fixed:");
@@ -51,7 +51,7 @@ void dijkstras(int time, int** distMatrix){
 		// 	printf("%d ",fixed[i]);
 		// }
 		// printf("\n");
-		min = 10000000;
+		min = -1;
 		for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
 			if(fixed[i] == 0){
 				update = dist[present] + distMatrix[present][i];
@@ -59,7 +59,7 @@ void dijkstras(int time, int** distMatrix){
 					dist[i] = update;
 					prev[i] = present;
 				}
-				if(min > dist[i]){
+				if(min > dist[i] || min == -1){
 					min = dist[i];
 					next = i;
 				}
