@@ -48,6 +48,7 @@ char exchange(int i){
 }
 
 void* sender(void* param){
+	printf("%s\n", "In sender");
 	int i = 0, peer_id;
 	char addr[10] = "node-";
 	addr[6] = '\0';
@@ -82,6 +83,7 @@ void* sender(void* param){
 }
 
 void* receiver(void* param){
+	printf("%s\n", "In receiver");
 	struct sockaddr_in peer_addr;
 	int addr_len = sizeof (struct sockaddr);
 	char recv_data[1024];
@@ -166,15 +168,15 @@ void* receiver(void* param){
 						// printf("%d ", every_node_lsa_details[node_id][i][1]);
 						offset += 8;
 					}
-					// printf("\n");
-					// printf("%s\n", "Lsa status:");
-					// int k;
-					// for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
-					// 	printf("%dth router:\n",i);
-					// 	for(j = 0 ; j < every_node_neighbors[i]; j++){
-					// 		printf("%d %d\n",every_node_lsa_details[i][j][0], every_node_lsa_details[i][j][1] );
-					// 	}
-					// }
+					printf("\n");
+					printf("%s\n", "Lsa status:");
+					int k;
+					for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
+						printf("%dth router:\n",i);
+						for(j = 0 ; j < every_node_neighbors[i]; j++){
+							printf("%d %d\n",every_node_lsa_details[i][j][0], every_node_lsa_details[i][j][1] );
+						}
+					}
 					// for(i = 0 ; i < NUMBER_OF_NEIGHBORS ; i++){
 					// 	printf();
 					// }

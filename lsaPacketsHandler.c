@@ -45,6 +45,7 @@ extern pthread_mutex_t lock;
 // }
 
 void* lsa_packet_sender(void* param){
+	printf("%s\n", "In lsa packet sender");
 	int i, offset, peer_id;
 	char send_data[1024];
 	char addr[10] = "node-";
