@@ -28,14 +28,29 @@ extern int* every_node_neighbors;
 
 
 extern pthread_mutex_t lock;
+
+// char exchange(int i){
+// 	switch(i){
+// 		case 0: return '0';
+// 		case 1: return '1';
+// 		case 2: return '2';
+// 		case 3: return '3';
+// 		case 4: return '4';
+// 		case 5: return '5';
+// 		case 6: return '6';
+// 		case 7: return '7';
+// 		case 8: return '8';
+// 		case 9: return '9';
+// 	}
+// }
+
 void* lsa_packet_sender(void* param){
 	int i, offset, peer_id;
 	char send_data[1024];
-	host = (struct hostent *) gethostbyname("localhost");
+	char addr[10] = "node-";
+	addr[6] = '\0';
+	
 	struct sockaddr_in peer_addr;
-	peer_addr.sin_family = AF_INET;
-    peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
-    bzero(&(peer_addr.sin_zero), 8);
 	while(1){
 		sleep(LSA_INTERVAL);
 		// printf("%s\n", "Lsa packets sending");
@@ -60,7 +75,12 @@ void* lsa_packet_sender(void* param){
 		pthread_mutex_unlock(&lock);
 		for(i = 0; i < NUMBER_OF_NEIGHBORS; i++){
 			peer_id = NEIGHBOR_IDS[i];
-			peer_addr.sin_port = htons(20000 + peer_id);
+			addr[5] = exchange(peer_id);
+			host = (struct hostent *) gethostbyname(addr);
+			peer_addr.sin_family = AF_INET;
+		    peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
+			peer_addr.sin_port = htons(20039);
+		    bzero(&(peer_addr.sin_zero), 8);
 			sendto(sock, send_data, offset, 0, (struct sockaddr *) &peer_addr, sizeof (struct sockaddr));
 		}
 	}

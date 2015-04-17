@@ -72,7 +72,7 @@ void* sender(void* param){
 			sendto(sock, send_data, 9, 0, (struct sockaddr *) &peer_addr, sizeof (struct sockaddr));
 			struct timeval timenow;
 			gettimeofday(&timenow, NULL);
-			helloTime = ((timenow.tv_sec  % 1000)* 1000 + (timenow.tv_usec / 1000));
+			helloTime = ((timenow.tv_sec  % 1000000)* 1000000 + (timenow.tv_usec));
 		}
 		printf("%s\n", "Actual Link Costs:");
 		for(i = 0 ; i < NUMBER_OF_NEIGHBORS; i++){
@@ -108,7 +108,7 @@ void* receiver(void* param){
 					strncpy((char*)&dummy, recv_data + 18, 4);
 					struct timeval timenow;
 					gettimeofday(&timenow, NULL);
-					actual_link_costs[i][1] = ((timenow.tv_sec  % 1000)* 1000 + (timenow.tv_usec / 1000)) - helloTime;
+					actual_link_costs[i][1] = ((timenow.tv_sec  % 1000000)* 1000000 + (timenow.tv_usec)) - helloTime;
 					// printf("%d\n",dummy );
 					break;
 				}
