@@ -27,7 +27,7 @@ int allFixed(int* fixed){
 }
 
 void dijkstras(int time, int** distMatrix){
-	// printf("%s\n", "Just got in");
+	printf("%s\n", "Just got in");
 	int present = identifier;
 	int i,j;
 	int fixed[NUMBER_OF_ROUTERS];

@@ -166,7 +166,7 @@ void initializer(int argc, char *argv[]){
 			// neighbor_link_details[counter][1] = linkDetails[i][2];
 			// neighbor_link_details[counter][2] = linkDetails[i][3];
 			actual_link_costs[counter][0] = linkDetails[i][1];
-			actual_link_costs[counter][1] = 99999;
+			actual_link_costs[counter][1] = 9999;
 			// min = neighbor_link_details[counter][1];
 			// max = neighbor_link_details[counter][2];
 			// if(min == max){
