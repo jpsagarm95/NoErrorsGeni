@@ -75,7 +75,7 @@ void* lsa_packet_sender(void* param){
 		pthread_mutex_unlock(&lock);
 		for(i = 0; i < NUMBER_OF_NEIGHBORS; i++){
 			peer_id = NEIGHBOR_IDS[i];
-			printf("%s %d\n", "Lsa packets sending to ", peer_id);
+			// printf("%s %d\n", "Lsa packets sending to ", peer_id);
 			addr[5] = exchange(peer_id);
 			host = (struct hostent *) gethostbyname(addr);
 			peer_addr.sin_family = AF_INET;

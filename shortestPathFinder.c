@@ -43,7 +43,7 @@ void dijkstras(int time, int** distMatrix){
 	dist[identifier] = 0;
 	int min, next;
 	while(!allFixed(fixed)){
-		printf("%s\n", "Just got in");
+		// printf("%s\n", "Just got in");
 		// printf("%s\n", "Into dijkstras");
 		// printf("%d\n", present);
 		// printf("%s\n", "Fixed:");
@@ -109,7 +109,7 @@ void dijkstras(int time, int** distMatrix){
 }
 
 void* spf(void* param){
-	printf("%s\n", "Just got into spf");
+	// printf("%s\n", "Just got into spf");
 	int i = 1, j;
 	int time = 0;
 	int **distMatrix;
