@@ -135,9 +135,9 @@ void* receiver(void* param){
 			sendto(sock, send_data, 22, 0, (struct sockaddr *) &peer_addr, sizeof (struct sockaddr));
 			// printf("\nTransaction done\n");
 		}else if(strncmp(recv_data, "LSA", 3) == 0){
-			printf("%s\n", "Got LSA packet");
 			strncpy((char*)&node_id, recv_data + 3, 4);
 			strncpy((char*)&node_seq_num, recv_data + 7, 4);
+			printf("%s %d\n", "Got LSA packet from ", node_id);
 			if(node_id != identifier){
 				if(lsa_seq_num_det[node_id] < node_seq_num){
 					// printf("Received LSA packet from %d\n", node_id);
