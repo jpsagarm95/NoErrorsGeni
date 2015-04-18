@@ -131,6 +131,7 @@ void* receiver(void* param){
 			strncpy(send_data + 18, (char *)&cost, 4);
 			send_data[22] = '\0';
 			// printf("%d\n", cost);
+			printf("%s %d\n", "Received hello packet from ", peer_id);
 			sendto(sock, send_data, 22, 0, (struct sockaddr *) &peer_addr, sizeof (struct sockaddr));
 			// printf("\nTransaction done\n");
 		}else if(strncmp(recv_data, "LSA", 3) == 0){
