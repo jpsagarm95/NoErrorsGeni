@@ -54,7 +54,7 @@ void* lsa_packet_sender(void* param){
 	struct sockaddr_in peer_addr;
 	while(1){
 		sleep(LSA_INTERVAL);
-		// printf("%s\n", "Lsa packets sending");
+		printf("%s\n", "Lsa packets sending");
 		strncpy(send_data, "LSA", 3);
 		strncpy(send_data + 3, (char*)&identifier, 4);
 		// printf("%d ", identifier);
