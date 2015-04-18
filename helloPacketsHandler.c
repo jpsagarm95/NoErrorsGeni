@@ -65,7 +65,7 @@ void* sender(void* param){
 			addr[5] = exchange(peer_id);
 			host = (struct hostent *) gethostbyname(addr);
 			peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
-			// printf("Hello sent to %d\n", peer_id);
+			printf("Hello sent to %d\n", peer_id);
 			strncpy(send_data, "HELLO", 5);
 			strncpy(send_data + 5, (char *)&identifier, 4);
 			// send_data[9] = '\0';
