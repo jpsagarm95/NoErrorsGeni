@@ -65,7 +65,7 @@ void* sender(void* param){
 			addr[5] = exchange(peer_id);
 			host = (struct hostent *) gethostbyname(addr);
 			peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
-			printf("Hello sent to %d\n", peer_id);
+			// printf("Hello sent to %d\n", peer_id);
 			strncpy(send_data, "HELLO", 5);
 			strncpy(send_data + 5, (char *)&identifier, 4);
 			// send_data[9] = '\0';
@@ -89,6 +89,8 @@ void* receiver(void* param){
 	char recv_data[1024];
 	char send_data[1024];
 	int bytes_read;
+	char addr[10] = "node-";
+	addr[6] = '\0';
 	int peer_id, i, cost, max, min, dummy, node_seq_num, node_id, num_of_entries, offset, j;
 	// printf("%s\n", "Lsa status:");
 	// for(i = 0 ; i < NUMBER_OF_ROUTERS; i++){
@@ -137,16 +139,18 @@ void* receiver(void* param){
 		}else if(strncmp(recv_data, "LSA", 3) == 0){
 			strncpy((char*)&node_id, recv_data + 3, 4);
 			strncpy((char*)&node_seq_num, recv_data + 7, 4);
-			printf("%s %d\n", "Got LSA packet from ", node_id);
 			if(node_id != identifier){
 				if(lsa_seq_num_det[node_id] < node_seq_num){
 					// printf("Received LSA packet from %d\n", node_id);
+					printf("%s %d\n", "Got LSA packet from ", node_id);
 					lsa_seq_num_det[node_id] = node_seq_num;
-					peer_addr.sin_family = AF_INET;
-	    			peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
-	    			bzero(&(peer_addr.sin_zero), 8);
 					for(i = 0 ; i < NUMBER_OF_NEIGHBORS ; i++){
-						peer_addr.sin_port = htons(20000 + NEIGHBOR_IDS[i]);
+						addr[5] = exchange(peer_id);
+						host = (struct hostent *) gethostbyname(addr);
+						peer_addr.sin_addr = *((struct in_addr *) host->h_addr);
+						peer_addr.sin_family = AF_INET;
+		    			peer_addr.sin_port = htons(20039);
+		    			bzero(&(peer_addr.sin_zero), 8);
 						sendto(sock, recv_data, bytes_read, 0, (struct sockaddr *) &peer_addr, sizeof (struct sockaddr));
 						// printf("Resent to %d\n", NEIGHBOR_IDS[i]);
 					}
